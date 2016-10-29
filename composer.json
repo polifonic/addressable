@@ -12,9 +12,9 @@
         }
     ],
     "require": {
-        "maxmind/geoip": "~1.1",
+        "maxmind/geoip": "^1.1",
         "php": ">=5.5.9",
-        "twig/twig": "~1.12"
+        "twig/twig": "^1.12"
     },
     "autoload": {
         "psr-4": { "Polifonic\\Addressable\\": "" }
