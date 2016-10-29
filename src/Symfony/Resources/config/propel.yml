@@ -1,0 +1,3 @@
+propel:
+    build-properties:
+        propel.behavior.addressable.class: Polifonic\Addressable\Propel\AddressableBehavior

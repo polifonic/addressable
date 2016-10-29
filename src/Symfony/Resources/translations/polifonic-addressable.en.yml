@@ -1,0 +1,20 @@
+address:
+    form:
+        name:
+            label:          Name
+        street:
+            label:          Street
+        complement:
+            label:          Complement
+        locality:
+            label:          Locality
+        region:
+            label:          Region
+        postal_code:
+            label:          Zip/Postal Code
+        country_id:
+            label:          Country
+
+    actions:
+        save:           Save
+        edit:           Edit

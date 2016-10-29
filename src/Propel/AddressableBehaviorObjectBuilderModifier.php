@@ -1,6 +1,6 @@
 <?php
 
-namespace UAM\Propel\Behavior;
+namespace Polifonic\Addressable\Propel;
 
 class AddressableBehaviorObjectBuilderModifier
 {

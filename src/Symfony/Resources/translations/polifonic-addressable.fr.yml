@@ -1,0 +1,20 @@
+address:
+    form:
+        name:
+            label:      Nom
+        street:
+            label:      Rue
+        complement:
+            label:      Complément
+        locality:
+            label:      Localité
+        region:
+            label:      Région
+        postal_code:
+            label:      Code Postal
+        country_id:
+            label:      Pays
+
+    actions:
+        save:           Enregistrer
+        edit:           Modifier

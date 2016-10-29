@@ -1,0 +1,27 @@
+services:
+    polifonic.addressable.form.type.address:
+        class: Polifonic\Addressable\Form\Type\AddressType
+        arguments:
+            - "@request_stack"
+            - "@polifonic.addressable.maxmind.geoip"
+        calls:
+            - [ setLocalIp, [ "%polifonic.addressable.default_local_ip%" ] ]
+        tags:
+            - { name: form.type }
+
+    polifonic.addressable.formatter:
+        class: Polifonic\Addressable\Formatter\Formatter
+        factory: [ Polifonic\Addressable\Formatter\Formatter, getInstance ]
+        calls:
+            - [ setBaseCountry, [ %polifonic.addressable.base_country% ] ]
+
+    polifonic.addressable.twig.extension.address:
+        class: Polifonic\Addressable\Twig\Extension\AddressExtension
+        arguments:
+            - "@polifonic.addressable.formatter"
+        tags:
+            - { name: twig.extension }
+
+    polifonic.addressable.maxmind.geoip:
+        class:      Polifonic\Addressable\Symfony\Maxmind\GeoipManager
+        arguments:  [ "%maxmind_geoip_data_file_path%" ]
