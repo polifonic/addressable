@@ -1,0 +1,30 @@
+{
+    "name": "polifonic/addressable",
+    "description": "Address",
+    "keywords": ["address", "twig", "propel", "symfony", "bundle"],
+    "homepage": "https://github.com/polifonic/addressable",
+    "type": "symfony-bundle",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Olivier Pichon",
+            "email": "op@polifonic.io"
+        }
+    ],
+    "require": {
+        "maxmind/geoip": "~1.1",
+        "php": ">=5.5.9",
+        "twig/twig": "~1.12"
+    },
+    "autoload": {
+        "psr-4": { "Polifonic\\Addressable\\": "" }
+    },
+    "config": {
+        "bin-dir": "vendor/bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master" : "0.4.x-dev"
+        }
+    }
+}
