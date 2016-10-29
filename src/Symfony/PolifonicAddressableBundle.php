@@ -1,6 +1,6 @@
 <?php
 
-namespace Polifonic\Addressable\Symfony\AddressBundle;
+namespace Polifonic\Addressable\Symfony;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

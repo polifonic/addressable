@@ -17,7 +17,7 @@
         "twig/twig": "^1.12"
     },
     "autoload": {
-        "psr-4": { "Polifonic\\Addressable\\": "" }
+        "psr-4": { "Polifonic\\Addressable\\": "src" }
     },
     "config": {
         "bin-dir": "vendor/bin"
