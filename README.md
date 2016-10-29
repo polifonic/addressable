@@ -1,20 +1,26 @@
-UAMAddressBundle
-================
+PolifonicAddressable
+====================
 
-The UAMAddressBundle adds various address-related packages to your symfony2 app.
 
 Requirements
 ------------
 
 
-Installation
-------------
+PolifonicAddressableBundle - a Symfony bundle
+---------------------------------------------
+
+The package includes a `PolifonicAddressableBundle` which can be added to your symfony 2 app.
+
+The bundles automatically sets up the required services.
+
+
+### Installation
 
 Add the bundle to your app's `composer.json` file:
 
 ```yaml
 	require: {
-		"uam/address-bundle": "~0.2"
+		"polifonic/addressable-bundle": "^0.4"
 	}
 ```
 
@@ -27,7 +33,7 @@ Enable the bundle in your app's kernel:
     {
         $bundles = array(
             …
-            new UAM\Bundle\AddressBundle\UAMAddressBundle()
+            new Polifonic\Addressable\Symfony\PolifonicAddressable()
         );
 
     }
@@ -45,26 +51,19 @@ or
 php composer.phar update
 ```
 
-Propel Addressable behavior
----------------------------
-
-The UAMADdressBundle includes the [Propel Addressable behavior](http://gitlab.united-asian.com/address/propel-addressable-behavior).
-
-To enable it, include the supplied propel configuration file in your app's `config.yml`.
-
-```yaml
-# app/config/config.yml
-
-imports:
-    - { resource: "@UAMAddressBundle/Resources/config/propel.yml" }
-```
-
-Twig Address extension
+Twig Addressable extension
 ----------------------
 
-The UANAddressBundle includes the [Twig Address extension](http://gitlab.united-asian.com/address/twig-address-extension).
+The PolifonicAddressable library includes a twig addressable extension.
 
 Address formatter
 -----------------
 
-The UANAddressBundle includes the [Address formatter](http://gitlab.united-asian.com/address/formatter).
+The PolifonicAddressable library includes the polifonic address formater.
+
+Propel Addressable behavior
+---------------------------
+
+The PolifonicAddressable library includes the Propel Addressable behavior.
+
+The behavior is enabled by default if you use the Symfony PolifonicAddressableBundle.
