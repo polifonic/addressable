@@ -16,7 +16,7 @@ class GeoipListener implements EventSubscriberInterface
 
     protected $local_ip;
 
-	public static function getSubscribedEvents()
+    public static function getSubscribedEvents()
     {
         return array(FormEvents::PRE_SET_DATA => 'preSetData');
     }
@@ -25,7 +25,7 @@ class GeoipListener implements EventSubscriberInterface
     {
         $this->request_stack = $request_stack;
 
-    	$this->geoip_provider = $geoip_provider;
+        $this->geoip_provider = $geoip_provider;
     }
 
     public function setLocalIp($ip = null)
@@ -40,7 +40,7 @@ class GeoipListener implements EventSubscriberInterface
         $geoip = $this->getGeoipRecord();
 
         if (!$addressable || !$geoip) {
-        	return;
+            return;
         }
 
         if (!$addressable->getCountryId()) {
@@ -62,10 +62,10 @@ class GeoipListener implements EventSubscriberInterface
 
     protected function getGeoipRecord()
     {
-    	$ip = $this->getClientIp();
+        $ip = $this->getClientIp();
 
-    	return $this->getGeoipProvider()
-    		->city($ip);
+        return $this->getGeoipProvider()
+            ->city($ip);
     }
 
     protected function getClientIp()

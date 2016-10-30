@@ -54,7 +54,7 @@ class PolifonicAddressableExtension extends Extension implements PrependExtensio
             array(
                 'build-properties' => array(
                     'propel.behavior.addressable.class' => 'Polifonic\Addressable\Propel\AddressableBehavior',
-                )
+                ),
             )
         );
     }
