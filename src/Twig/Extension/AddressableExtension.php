@@ -6,7 +6,7 @@ use Twig_Extension;
 use Twig_SimpleFilter;
 use Polifonic\Addressable\Formatter\Formatter;
 
-class AddressExtension extends Twig_Extension
+class AddressableExtension extends Twig_Extension
 {
     protected $formatter;
 

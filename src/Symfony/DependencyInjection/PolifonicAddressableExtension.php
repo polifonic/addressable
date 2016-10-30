@@ -20,11 +20,13 @@ class PolifonicAddressableExtension extends Extension implements PrependExtensio
 
         $container->setParameter('polifonic.addressable.base_country', $config['base_country']);
 
-        $container->setParameter('polifonic.addressable.default_local_ip', $config['default_local_ip']);
+        $container->setParameter('polifonic.addressable.ip_address', $config['ip_address']);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         $loader->load('services.yml');
+
+        $container->setAlias('polifonic.addressable.geoip.provider', $config['geoip']['provider']);
     }
 
     /**
@@ -37,20 +39,22 @@ class PolifonicAddressableExtension extends Extension implements PrependExtensio
         $configs = $container->getExtensionConfig($this->getAlias());
         $config = $this->processConfiguration(new Configuration(), $configs);
 
-        if (true === isset($bundles['MaxmindGeoipBundle'])) {
-            $this->configureMaxmindGeoipBundle($container, $config);
+        if (true === isset($bundles['PropelBundle'])) {
+            $this->configurePropelBundle($container, $config);
         }
     }
 
     /**
      * @param ContainerBuilder $container The service container
      */
-    protected function configureMaxmindGeoipBundle(ContainerBuilder $container, $config)
+    protected function configurePropelBundle(ContainerBuilder $container, $config)
     {
         $container->prependExtensionConfig(
-            'maxmind_geoip',
+            'propel',
             array(
-                'data_file_path' => '%kernel.root_dir%/../vendor/polifonic/addressable-bundle/Resources/geoip/GeoIP.dat',
+                'build-properties' => array(
+                    'propel.behavior.addressable.class' => 'Polifonic\Addressable\Propel\AddressableBehavior',
+                )
             )
         );
     }

@@ -21,8 +21,16 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('US')
                     ->cannotBeEmpty()
                 ->end()
-                ->scalarNode('default_local_ip')
+                ->scalarNode('ip_address')
                     ->defaultValue(null)
+                ->end()
+                ->arrayNode('geoip')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('provider')
+                            ->defaultValue('polifonic.addressable.geoip.reader')
+                        ->end()
+                    ->end()
                 ->end()
             ->end();
 

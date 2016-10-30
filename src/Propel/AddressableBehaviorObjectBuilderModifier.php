@@ -22,7 +22,7 @@ class AddressableBehaviorObjectBuilderModifier
     {
         $this->builder = $builder;
         $this->builder->declareClasses(
-            'UAM\\Propel\\Behavior\\AddressableInterface'
+            'Polifonic\\Addressable\\Model\\AddressableInterface'
         );
     }
 

@@ -1,13 +1,25 @@
 services:
-    polifonic.addressable.form.type.address:
-        class: Polifonic\Addressable\Form\Type\AddressType
+    polifonic.addressable.form.type.addressable:
+        class: Polifonic\Addressable\Symfony\Form\Type\AddressableFormType
         arguments:
-            - "@request_stack"
-            - "@polifonic.addressable.maxmind.geoip"
-        calls:
-            - [ setLocalIp, [ "%polifonic.addressable.default_local_ip%" ] ]
+            - "@polifonic.addressable.geoip.listener"
         tags:
             - { name: form.type }
+
+    polifonic.addressable.geoip.listener:
+        class: Polifonic\Addressable\Symfony\EventListener\GeoipListener
+        arguments:
+            - "@request_stack"
+            - "@polifonic.addressable.geoip.provider"
+        calls:
+            - [ setLocalIp, [ "%polifonic.addressable.ip_address%" ] ]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    polifonic.addressable.geoip.reader:
+        class: Geoip2\Database\Reader
+        factory: [ "@cravler_max_mind_geo_ip.service.geo_ip_service", getReader ]
+        arguments: [ "city" ]
 
     polifonic.addressable.formatter:
         class: Polifonic\Addressable\Formatter\Formatter
@@ -16,12 +28,8 @@ services:
             - [ setBaseCountry, [ %polifonic.addressable.base_country% ] ]
 
     polifonic.addressable.twig.extension.address:
-        class: Polifonic\Addressable\Twig\Extension\AddressExtension
+        class: Polifonic\Addressable\Twig\Extension\AddressableExtension
         arguments:
             - "@polifonic.addressable.formatter"
         tags:
             - { name: twig.extension }
-
-    polifonic.addressable.maxmind.geoip:
-        class:      Polifonic\Addressable\Symfony\Maxmind\GeoipManager
-        arguments:  [ "%maxmind_geoip_data_file_path%" ]
