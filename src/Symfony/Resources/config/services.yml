@@ -19,7 +19,7 @@ services:
     polifonic.addressable.geoip.reader:
         class: Geoip2\Database\Reader
         factory: [ "@cravler_max_mind_geo_ip.service.geo_ip_service", getReader ]
-        arguments: [ "city" ]
+        arguments: [ "city", [ "@=service('request_stack').getCurrentRequest().getLocale()" ] ]
 
     polifonic.addressable.formatter:
         class: Polifonic\Addressable\Formatter\Formatter
