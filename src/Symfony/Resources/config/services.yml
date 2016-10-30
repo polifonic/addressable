@@ -3,6 +3,7 @@ services:
         class: Polifonic\Addressable\Symfony\Form\Type\AddressableFormType
         arguments:
             - "@polifonic.addressable.geoip.listener"
+            - "%polifonic.addressable.geoip.enabled%"
         tags:
             - { name: form.type }
 
@@ -12,14 +13,15 @@ services:
             - "@request_stack"
             - "@polifonic.addressable.geoip.provider"
         calls:
-            - [ setLocalIp, [ "%polifonic.addressable.ip_address%" ] ]
+            - [ setLocalIp, [ "%polifonic.addressable.geoip.ip_address%" ] ]
         tags:
             - { name: kernel.event_subscriber }
 
     polifonic.addressable.geoip.reader:
         class: Geoip2\Database\Reader
         factory: [ "@cravler_max_mind_geo_ip.service.geo_ip_service", getReader ]
-        arguments: [ "city", [ "@=service('request_stack').getCurrentRequest().getLocale()" ] ]
+#        arguments: [ "city", [ "@=service('request_stack').getCurrentRequest().getLocale()" ] ]
+        arguments: [ "city" ]
 
     polifonic.addressable.formatter:
         class: Polifonic\Addressable\Formatter\Formatter
@@ -33,3 +35,9 @@ services:
             - "@polifonic.addressable.formatter"
         tags:
             - { name: twig.extension }
+
+    polifonic.addressable.validator.country:
+        class: Polifonic\Addressable\Validator\CountryValidator
+#        arguments: [ "@validator" ]
+        tags:
+            - { name: validator.constraint_validator }

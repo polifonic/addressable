@@ -11,9 +11,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AddressableFormType extends AbstractType
 {
-    public function __construct(EventSubscriberInterface $geoip_listener)
+    protected $geoip_listener;
+
+    protected $geoip_enabled;
+
+    public function __construct(EventSubscriberInterface $geoip_listener, $geoip_enabled = true)
     {
         $this->geoip_listener = $geoip_listener;
+
+        $this->geoip_enabled = $geoip_enabled;
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -21,6 +27,7 @@ class AddressableFormType extends AbstractType
         $resolver->setDefaults(array(
             'translation_domain' => 'polifonic-addressable',
             'data_class' => 'Polifonic\Addressable\Model\AddressableInterface',
+            'geoip' => true,
         ));
     }
 
@@ -61,7 +68,9 @@ class AddressableFormType extends AbstractType
             'empty_data' => null,
         ));
 
-        $builder->addEventSubscriber($this->getGeoipListener());
+        if ($this->isGeoipEnabled() && true === $options['geoip']) {
+            $builder->addEventSubscriber($this->getGeoipListener());
+        }
     }
 
     public function getBlockPrefix()
@@ -72,5 +81,10 @@ class AddressableFormType extends AbstractType
     protected function getGeoipListener()
     {
         return $this->geoip_listener;
+    }
+
+    protected function isGeoipEnabled()
+    {
+        return true === $this->geoip_enabled;
     }
 }

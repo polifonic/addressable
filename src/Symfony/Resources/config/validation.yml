@@ -1,0 +1,17 @@
+Polifonic\Addressable\Model\AddressableInterface:
+    getters:
+        street:
+            - NotBlank:
+                message: polifonic.addressable.street.blank
+                groups: [polifonic.addressable.full]
+        locality:
+            - NotBlank:
+                message: polifonic.addressable.locality.blank
+                groups: [polifonic.addressable.full, polifonic.addressable.city]
+        countryId:
+            - NotBlank:
+                message: polifonic.addressable.country_id.blank
+                groups: [polifonic.addressable.full, polifonic.addressable.city, polifonic.addressable.country]
+            - Country:
+                message: polifonic.addressable.country_id.invalid
+                groups: [polifonic.addressable.full, polifonic.addressable.city, polifonic.addressable.country]

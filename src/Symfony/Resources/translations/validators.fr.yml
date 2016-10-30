@@ -1,0 +1,8 @@
+polifonic:
+    addressable:
+        country_id:
+            blank: Veuillez indiquer votre pays de résidence.
+        locality:
+            blank: Veuillez indiquer votre ville de résidence.
+        street:
+            blank: Veuillez indiquer votre adresse.

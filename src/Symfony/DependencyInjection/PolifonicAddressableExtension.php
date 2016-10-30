@@ -20,7 +20,9 @@ class PolifonicAddressableExtension extends Extension implements PrependExtensio
 
         $container->setParameter('polifonic.addressable.base_country', $config['base_country']);
 
-        $container->setParameter('polifonic.addressable.ip_address', $config['ip_address']);
+        $container->setParameter('polifonic.addressable.geoip.enabled', $config['geoip']['enabled']);
+
+        $container->setParameter('polifonic.addressable.geoip.ip_address', $config['geoip']['ip_address']);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 

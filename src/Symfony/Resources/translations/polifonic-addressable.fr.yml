@@ -5,13 +5,13 @@ address:
         street:
             label:      Rue
         complement:
-            label:      Complément
+            label:      Complément d'adresse
         locality:
-            label:      Localité
+            label:      Ville/Localité
         region:
-            label:      Région
+            label:      Région/Etat
         postal_code:
-            label:      Code Postal
+            label:      Code postal/Code zip
         country_id:
             label:      Pays
 

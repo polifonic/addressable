@@ -3,13 +3,13 @@ address:
         name:
             label:          Name
         street:
-            label:          Street
+            label:          Street address
         complement:
-            label:          Complement
+            label:          Address complement
         locality:
-            label:          Locality
+            label:          City/Locality
         region:
-            label:          Region
+            label:          Region/State
         postal_code:
             label:          Zip/Postal Code
         country_id:
