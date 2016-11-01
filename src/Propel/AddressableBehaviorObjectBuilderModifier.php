@@ -21,14 +21,14 @@ class AddressableBehaviorObjectBuilderModifier
     protected function setBuilder($builder)
     {
         $this->builder = $builder;
-        $this->builder->declareClasses(
-            'Polifonic\\Addressable\\Model\\AddressableInterface'
-        );
     }
 
     public function objectMethods($builder)
     {
+        $builder->declareClasses('Polifonic\\Addressable\\Model\\AddressableInterface');
+
         $this->setBuilder($builder);
+
         $script = '';
 
         $this->addGetAddressableMethod($script);
