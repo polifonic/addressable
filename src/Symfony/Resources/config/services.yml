@@ -27,7 +27,7 @@ services:
         class: Polifonic\Addressable\Formatter\Formatter
         factory: [ Polifonic\Addressable\Formatter\Formatter, getInstance ]
         calls:
-            - [ setBaseCountry, [ %polifonic.addressable.base_country% ] ]
+            - [ setBaseCountry, [ "%polifonic.addressable.base_country%" ] ]
 
     polifonic.addressable.twig.extension.address:
         class: Polifonic\Addressable\Twig\Extension\AddressableExtension
@@ -36,8 +36,8 @@ services:
         tags:
             - { name: twig.extension }
 
-    polifonic.addressable.validator.country:
-        class: Polifonic\Addressable\Validator\CountryValidator
+#    polifonic.addressable.validator.country:
+#        class: Polifonic\Addressable\Validator\CountryValidator
 #        arguments: [ "@validator" ]
-        tags:
-            - { name: validator.constraint_validator }
+#        tags:
+#            - { name: validator.constraint_validator }
