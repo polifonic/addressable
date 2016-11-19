@@ -2,7 +2,10 @@
 
 namespace Polifonic\Addressable\Symfony\EventListener;
 
+use Exception;
 use GeoIp2\ProviderInterface;
+use GeoIp2\Exception\AddressNotFoundException;
+use MaxMind\Db\Reader\InvalidDatabaseException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -64,8 +67,16 @@ class GeoipListener implements EventSubscriberInterface
     {
         $ip = $this->getClientIp();
 
-        return $this->getGeoipProvider()
-            ->city($ip);
+        try {
+            return $this->getGeoipProvider()
+                ->city($ip);
+        } catch (AddressNotFoundException $e) {
+            // TODO [OP 2016-11-19] Log error somewhere
+        } catch (InvalidDatabaseException $e) {
+            // TODO [OP 2016-11-19] Log error somewhere
+        } catch (Exception $e) {
+            // TODO [OP 2016-11-19] Log error somewhere
+        }
     }
 
     protected function getClientIp()
